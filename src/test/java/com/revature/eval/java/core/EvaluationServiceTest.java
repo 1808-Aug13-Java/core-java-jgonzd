@@ -150,7 +150,7 @@ public class EvaluationServiceTest {
 
 	@Test
 	public void testALongMixCaseWord() {
-		assertEquals(41, evaluationService.getScrabbleScore("OxyphenButazone"));
+		assertEquals(42, evaluationService.getScrabbleScore("OxyphenButazone"));
 	}
 
 	/*******************************************************************
