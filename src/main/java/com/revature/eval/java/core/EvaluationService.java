@@ -241,34 +241,31 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string){
 		
-		String number;
-		//System.out.println(string);
-		char firstchar = string.charAt(0);
 		
-		if(firstchar >= '0' & firstchar <= '9') {
-//			number = number + firstchar;
-			
-			for(int i = 0; i <= string.length() - 1; i++) {
-				for(int j = 0; j <= 2; j++) {
-					if(string.charAt(j+i) >= '0' & string.charAt(j+i) <= '9') {
-						number = number + string.charAt(j+i);
-					}
-					else {
-						throw new IllegalArgumentException();
-					}
-				}
-				
-			}
-			
-		}
+		//System.out.println(string);
+//		char firstchar = string.charAt(0);
+//		
+//		if(firstchar >= '0' & firstchar <= '9') {
+////			number = number + firstchar;
+//			
+//			for(int i = 0; i <= string.length() - 1; i++) {
+//				for(int j = 0; j <= 2; j++) {
+//					if(string.charAt(j+i) >= '0' & string.charAt(j+i) <= '9') {
+//						number = number + string.charAt(j+i);
+//					}
+//					else {
+//						throw new IllegalArgumentException();
+//					}
+//				}
+//				
+//			}
+//			
+//		}
 		
 		//System.out.println(string.toCharArray()[0]);
 		
 		
 		String number = "";
-//		if(string.length() > 11) {
-//			throw new IllegalArgumentException();
-//		}
 		for(char c : string.toCharArray()) {
 			if(c >= '0' & c <= '9') {
 				number = number + c;
@@ -277,6 +274,11 @@ public class EvaluationService {
 				//throw new IllegalArgumentException();
 			}		
 		}
+		
+		if(number.length() != 10) {
+			throw new IllegalArgumentException();
+		}
+		
 		return number;
 	}
 
