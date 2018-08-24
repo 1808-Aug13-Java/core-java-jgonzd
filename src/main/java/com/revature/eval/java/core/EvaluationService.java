@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +15,11 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		StringBuilder str = new StringBuilder(string);
+		
+		
+		return (str.reverse()).toString();
 	}
 
 	/**
@@ -27,8 +31,15 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String Acronym = "" + phrase.charAt(0);
+		for(int i = 1; i < phrase.length(); i++)
+		{	if(phrase.charAt(i) == ' ' | phrase.charAt(i) == '-')
+			{
+				Acronym = Acronym + phrase.charAt(i+1);
+			}
+				
+		}
+		return Acronym.toUpperCase();
 	}
 
 	/**
@@ -81,17 +92,59 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			if(this.sideOne == this.sideTwo) {
+				if(this.sideTwo == this.sideThree)
+				{
+					if(this.sideOne == this.sideThree)
+					{
+						return true;
+					}
+				}
+			}
 			return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			if(this.sideOne == this.sideTwo) {
+				if(this.sideTwo != this.sideThree)
+				{
+					if(this.sideOne != this.sideThree)
+					{
+						return true;
+					}
+				}
+			}
+			if(this.sideTwo == this.sideThree) {
+				if(this.sideOne != this.sideTwo)
+				{
+					if(this.sideOne != this.sideThree)
+					{
+						return true;
+					}
+				}
+			}
+			if(this.sideOne == this.sideThree) {
+				if(this.sideOne != this.sideTwo)
+				{
+					if(this.sideTwo != this.sideThree)
+					{
+						return true;
+					}
+				}
+			}
 			return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			if(this.sideOne != this.sideTwo) {
+				if(this.sideTwo != this.sideThree)
+				{
+					if(this.sideOne != this.sideThree)
+					{
+						return true;
+					}
+				}
+			}
 			return false;
 		}
 
@@ -113,8 +166,46 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		HashMap sc = new HashMap();
+		int score = 0;
+		
+		sc.put('A', 1);
+		sc.put('E', 1);
+		sc.put('I', 1);
+		sc.put('O', 1);
+		sc.put('U', 1);
+		sc.put('L', 1);
+		sc.put('N', 1);
+		sc.put('R', 1);
+		sc.put('S', 1);
+		sc.put('T', 1);
+		sc.put('D', 2);
+		sc.put('G', 2);
+		sc.put('B', 3);
+		sc.put('C', 3);
+		sc.put('M', 3);
+		sc.put('P', 3);
+		sc.put('F', 4);
+		sc.put('H', 4);
+		sc.put('V', 4);
+		sc.put('W', 4);
+		sc.put('Y', 4);
+		sc.put('K', 5);
+		sc.put('J', 8);
+		sc.put('X', 8);
+		sc.put('Q', 10);
+		sc.put('Z', 10);
+	
+		char[] charArray = string.toCharArray();
+		System.out.println(charArray);
+		
+		for(int i = 0; i < charArray.length; i++) {
+			System.out.println(sc.get(Character.toUpperCase(charArray[i])));
+			score = score + (Integer) sc.get(Character.toUpperCase(charArray[i]));
+		}
+		
+		return score;
 	}
 
 	/**
@@ -148,9 +239,45 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String cleanPhoneNumber(String string){
+		
+		String number;
+		//System.out.println(string);
+		char firstchar = string.charAt(0);
+		
+		if(firstchar >= '0' & firstchar <= '9') {
+//			number = number + firstchar;
+			
+			for(int i = 0; i <= string.length() - 1; i++) {
+				for(int j = 0; j <= 2; j++) {
+					if(string.charAt(j+i) >= '0' & string.charAt(j+i) <= '9') {
+						number = number + string.charAt(j+i);
+					}
+					else {
+						throw new IllegalArgumentException();
+					}
+				}
+				
+			}
+			
+		}
+		
+		//System.out.println(string.toCharArray()[0]);
+		
+		
+		String number = "";
+//		if(string.length() > 11) {
+//			throw new IllegalArgumentException();
+//		}
+		for(char c : string.toCharArray()) {
+			if(c >= '0' & c <= '9') {
+				number = number + c;
+			}
+			else {
+				//throw new IllegalArgumentException();
+			}		
+		}
+		return number;
 	}
 
 	/**
