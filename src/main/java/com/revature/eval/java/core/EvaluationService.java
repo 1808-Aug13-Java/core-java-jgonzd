@@ -246,12 +246,21 @@ public class EvaluationService {
 			if(c >= '0' & c <= '9') {
 				number = number + c;
 			}	
+<<<<<<< HEAD
 		}
 		
 		if(number.length() != 10) {
 			throw new IllegalArgumentException();
 		}
 		
+=======
+		}
+		
+		if(number.length() != 10) {
+			throw new IllegalArgumentException();
+		}
+		
+>>>>>>> 12cdafe2306f0f56a289577ec8ff7714e39a9845
 		return number;
 	}
 
