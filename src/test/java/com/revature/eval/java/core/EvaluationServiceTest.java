@@ -474,7 +474,7 @@ public class EvaluationServiceTest {
 
 	@Test
 	public void testEncodeMindBlowingly() {
-		assertEquals("nrmwy oldrm tob", EvaluationService.AtbashCipher.encode("mindblowingly"));
+		assertEquals("nrmwy oldrm tob", EvaluationService.AtbashCipher.encode("mindb lowin gly"));
 	}
 
 	@Test
@@ -498,24 +498,24 @@ public class EvaluationServiceTest {
 	 ******************************************************************/
 	@Test
 	public void testDecodeExercism() {
-		assertEquals("exercism", EvaluationService.AtbashCipher.decode("vcvix rhn"));
+		assertEquals("exercism", EvaluationService.AtbashCipher.decode("vcvixrhn"));
 	}
 
 	@Test
 	public void testDecodeASentence() {
 		assertEquals("anobstacleisoftenasteppingstone",
-				EvaluationService.AtbashCipher.decode("zmlyh gzxov rhlug vmzhg vkkrm thglm v"));
+				EvaluationService.AtbashCipher.decode("zmlyhgzxovrhlugvmzhgvkkrmthglmv"));
 	}
 
 	@Test
 	public void testDecodeNumbers() {
-		assertEquals("testing123testing", EvaluationService.AtbashCipher.decode("gvhgr mt123 gvhgr mt"));
+		assertEquals("testing123testing", EvaluationService.AtbashCipher.decode("gvhgrmt123gvhgrmt"));
 	}
 
 	@Test
 	public void testDecodeAllTheLetters() {
 		assertEquals("thequickbrownfoxjumpsoverthelazydog",
-				EvaluationService.AtbashCipher.decode("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"));
+				EvaluationService.AtbashCipher.decode("gsvjfrxpyildmulcqfnkhlevigsvozabwlt"));
 	}
 
 	/*******************************************************************

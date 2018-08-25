@@ -1,5 +1,6 @@
 package com.revature.eval.java.core;
 
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -246,21 +247,12 @@ public class EvaluationService {
 			if(c >= '0' & c <= '9') {
 				number = number + c;
 			}	
-<<<<<<< HEAD
 		}
 		
 		if(number.length() != 10) {
 			throw new IllegalArgumentException();
 		}
 		
-=======
-		}
-		
-		if(number.length() != 10) {
-			throw new IllegalArgumentException();
-		}
-		
->>>>>>> 12cdafe2306f0f56a289577ec8ff7714e39a9845
 		return number;
 	}
 
@@ -381,8 +373,22 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		StringBuilder str = new StringBuilder(string);
+		
+		while(true) {
+			System.out.println(str);
+			if("bcdfghjklmnpqrstvwxyz".indexOf(str.charAt(0)) > -1) {
+				str.append(str.charAt(0));
+				str.deleteCharAt(0);
+			}
+			if("aeiou".indexOf(str.charAt(0)) > -1) {
+				break;
+			}
+		}
+		
+		str.append("ay");
+		return str.toString();
 	}
 
 	/**
@@ -435,11 +441,9 @@ public class EvaluationService {
 			for(int j = 1; j <= i; j++) {
 				if(i%j == 0 & i != 1 & j != 1 & i != j) {
 					pbool = false;
-					//System.out.println(i);
 				}
 			}
 			if(pbool == true & i != 1) {
-				//System.out.println(i);
 				primes.add(i);
 			}
 		}
@@ -554,13 +558,24 @@ public class EvaluationService {
 			bc.put(25, 'y');
 			bc.put(26, 'z');
 		
-			char[] charArray = (string.toLowerCase()).toCharArray();
+			char[] charArray = string.toCharArray();
 			
 			String out = "";
 			
+			
 			for(char c: charArray) {
-				out = out + bc.get(((int) (sc.get(c))+key)%26);
-				System.out.println(sc.get(c));
+				if((c >= 'A' & c <= 'Z')||(c >= 'a' & c <= 'z')) {
+					if(Character.isUpperCase(c) == true) {
+						out = (out + bc.get(((int) (sc.get(Character.toLowerCase(c)))+key)%26)).toUpperCase();
+					}
+					else {
+						out = (out + bc.get(((int) (sc.get(Character.toLowerCase(c)))+key)%26)).toLowerCase();
+					}
+				}
+				else {
+					out = out + c;
+				}
+			
 			}
 			
 			
@@ -636,8 +651,80 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			HashMap sc = new HashMap();
+			HashMap bc = new HashMap();
+			
+			sc.put('a', 'z');
+			sc.put('b', 'y');
+			sc.put('c', 'x');
+			sc.put('d', 'w');
+			sc.put('e', 'v');
+			sc.put('f', 'u');
+			sc.put('g', 't');
+			sc.put('h', 's');
+			sc.put('i', 'r');
+			sc.put('j', 'q');
+			sc.put('k', 'p');
+			sc.put('l', 'o');
+			sc.put('m', 'n');
+			sc.put('n', 'm');
+			sc.put('o', 'l');
+			sc.put('p', 'k');
+			sc.put('q', 'j');
+			sc.put('r', 'i');
+			sc.put('s', 'h');
+			sc.put('t', 'g');
+			sc.put('u', 'f');
+			sc.put('v', 'e');
+			sc.put('w', 'd');
+			sc.put('x', 'c');
+			sc.put('y', 'b');
+			sc.put('z', 'a');
+			sc.put('A', 'z');
+			sc.put('B', 'y');
+			sc.put('C', 'x');
+			sc.put('D', 'w');
+			sc.put('E', 'v');
+			sc.put('F', 'u');
+			sc.put('G', 't');
+			sc.put('H', 's');
+			sc.put('I', 'r');
+			sc.put('J', 'q');
+			sc.put('K', 'p');
+			sc.put('L', 'o');
+			sc.put('M', 'n');
+			sc.put('N', 'm');
+			sc.put('O', 'l');
+			sc.put('P', 'k');
+			sc.put('Q', 'j');
+			sc.put('R', 'i');
+			sc.put('S', 'h');
+			sc.put('T', 'g');
+			sc.put('U', 'f');
+			sc.put('V', 'e');
+			sc.put('W', 'd');
+			sc.put('X', 'c');
+			sc.put('Y', 'b');
+			sc.put('Z', 'a');
+			sc.put('1', '1');
+			sc.put('2', '2');
+			sc.put('3', '3');
+			sc.put('4', '4');
+			sc.put('5', '5');
+			sc.put('6', '6');
+			sc.put('7', '7');
+			sc.put('8', '8');
+			sc.put('9', '9');
+			sc.put('0', '0');
+			
+			StringBuilder str = new StringBuilder(string);
+			
+			for(int i = 0; i < str.length(); i++) {
+				str.setCharAt(i, (char) sc.get(str.charAt(i)));
+			}
+				
+			
+			return str.toString();
 		}
 
 		/**
@@ -647,8 +734,55 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			HashMap sc = new HashMap();
+			HashMap bc = new HashMap();
+			
+			sc.put('z', 'a');
+			sc.put('y', 'b');
+			sc.put('x', 'c');
+			sc.put('w', 'd');
+			sc.put('v', 'e');
+			sc.put('u', 'f');
+			sc.put('t', 'g');
+			sc.put('s', 'h');
+			sc.put('r', 'i');
+			sc.put('q', 'j');
+			sc.put('p', 'k');
+			sc.put('o', 'l');
+			sc.put('n', 'm');
+			sc.put('m', 'n');
+			sc.put('l', 'o');
+			sc.put('k', 'p');
+			sc.put('j', 'q');
+			sc.put('i', 'r');
+			sc.put('h', 's');
+			sc.put('g', 't');
+			sc.put('f', 'u');
+			sc.put('e', 'v');
+			sc.put('d', 'w');
+			sc.put('c', 'x');
+			sc.put('b', 'y');
+			sc.put('a', 'z');
+			
+			sc.put('1', '1');
+			sc.put('2', '2');
+			sc.put('3', '3');
+			sc.put('4', '4');
+			sc.put('5', '5');
+			sc.put('6', '6');
+			sc.put('7', '7');
+			sc.put('8', '8');
+			sc.put('9', '9');
+			sc.put('0', '0');
+			
+			StringBuilder str = new StringBuilder(string);
+			
+			for(int i = 0; i < str.length(); i++) {
+				str.setCharAt(i, (char) sc.get(str.charAt(i)));
+			}
+				
+			
+			return str.toString();
 		}
 	}
 
@@ -737,8 +871,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		return given.plus((long) Math.pow(10,9), ChronoUnit.SECONDS);
 	}
 
 	/**
